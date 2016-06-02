@@ -7,9 +7,9 @@ A gradle plugin for managing docker images and containers
 
 The `docker` closure is a plugin extension used to encapsulate general configuration for the various tasks.
 It currently supports the following fields:
-- _imgName_: a name for the image
-- _imgVersion_: a tag version for the image
-- _repo_: a repository to tag images to
+- __*imgName*__: a name for the image.
+- __*imgVersion*__: a tag version for the image.
+- __*repo*__: a repository to tag images to.
 
 ```groovy
 docker {
