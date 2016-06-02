@@ -7,9 +7,10 @@ A gradle plugin for managing docker images and containers
 
 The `docker` closure is a plugin extension used to encapsulate general configuration for the various tasks.
 It currently supports the following fields:
-- _imgName_: a name for the image
-- _imgVersion_: a tag version for the image
-- registry: a registry to tag images to
+- __*imgName*__: a name for the image
+- __*imgVersion*__: a tag version for the image
+- __*registry*__: a registry to push images to
+>>>>>>> 4124d09ecad3c85e08eb8ada2379d18331ba9ed6
 
 ```groovy
 docker {
@@ -22,7 +23,7 @@ docker {
 ## Tasks
 
 #### dockerBuild
-Build an image from an existing `Dockerfile` or a provided `dockerfile` configuration
+Build an image from an existing Dockerfile or a provided `dockerfile` configuration
 It currently supports a field, `dockerfilePath`, for providing the location of an existing dockerfile.
 
 ```groovy
@@ -31,7 +32,7 @@ dockerBuild {
 }
 ```
 
-In liu of providing an existing `Dockerfile`, a `dockerfile` configuration can be provided.
+In liu of providing an existing Dockerfile, a `dockerfile` configuration can be provided.
 
 ```groovy
 dockerfile {
