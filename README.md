@@ -1,5 +1,5 @@
-DockerPlugin
-============
+Gradle Docker Plugin
+====================
 
 A gradle plugin for managing docker images and containers
 
