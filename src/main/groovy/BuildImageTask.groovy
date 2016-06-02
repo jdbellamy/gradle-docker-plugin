@@ -29,15 +29,17 @@ class BuildImageTask extends DefaultTask {
         String version = project.docker.imgVersion ?: (project.version ?: null)
         String registry = project.docker.registry ?: ''
         String imgName = project.docker.imgName ?: this.project.name
-        def fullImgName= registry ? join('/', registry, imgName) : imgName
         if (dockerfilePath) {
-            docker.build(Paths.get(dockerfilePath), fullImgName, progressHandler)
+            docker.build(Paths.get(dockerfilePath), imgName, progressHandler)
         } else {
             new File("${project.buildDir.canonicalPath}/Dockerfile").text = project.dockerfile.toString()
-            docker.build(Paths.get("${project.buildDir.path}/."), fullImgName, progressHandler)
+            docker.build(Paths.get("${project.buildDir.path}/."), imgName, progressHandler)
         }
+        def repository = registry ? join('/', registry, imgName) : imgName
+        //tag once with tagVersion as latest
+        docker.tag(imgName, "$repository:latest")
         if (version) {
-            docker.tag(fullImgName, "$fullImgName:$version")
+            docker.tag(imgName, "$repository:$version")
         }
     }
 }
