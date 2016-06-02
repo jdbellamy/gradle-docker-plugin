@@ -10,7 +10,6 @@ It currently supports the following fields:
 - __*imgName*__: a name for the image
 - __*imgVersion*__: a tag version for the image
 - __*registry*__: a registry to push images to
->>>>>>> 4124d09ecad3c85e08eb8ada2379d18331ba9ed6
 
 ```groovy
 docker {
