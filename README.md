@@ -31,7 +31,7 @@ dockerBuild {
 }
 ```
 
-In liu of providing an existing Dockerfile, a `dockerfile` configuration can be provided.
+Instead of using an existing Dockerfile, a `dockerfile` configuration can be provided.
 
 ```groovy
 dockerfile {
