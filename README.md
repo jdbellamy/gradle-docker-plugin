@@ -9,11 +9,11 @@ The `docker` closure is a plugin extension used to encapsulate general configura
 It currently supports the following fields:
 - _imgName_: a name for the image
 - _imgVersion_: a tag version for the image
-- _repo_: a repository to tag images to
+- registry: a registry to tag images to
 
 ```groovy
 docker {
-    repo = 'io.docker'
+    registry = 'io.docker'
     imgName = 'myImage'
     imgVersion = '1.0.0-SNAPSHOT'
 }

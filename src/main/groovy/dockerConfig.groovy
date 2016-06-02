@@ -1,5 +1,5 @@
 class DockerConfig {
-    String repo
+    String registry
     String imgName
     String imgVersion
 }

@@ -27,9 +27,9 @@ class BuildImageTask extends DefaultTask {
     @TaskAction
     String dockerBuild() {
         String version = project.docker.imgVersion ?: (project.version ?: null)
-        String repo = project.docker.repo ?: ''
+        String registry = project.docker.registry ?: ''
         String imgName = project.docker.imgName ?: this.project.name
-        def fullImgName= repo ? join('/',repo,imgName) : imgName
+        def fullImgName= registry ? join('/', registry, imgName) : imgName
         if (dockerfilePath) {
             docker.build(Paths.get(dockerfilePath), fullImgName, progressHandler)
         } else {
