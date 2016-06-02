@@ -10,5 +10,7 @@ class DockerPlugin implements Plugin<Project> {
         target.task('dockerBuild', type: BuildImageTask)
         target.task('dockerTag', type: TagImageTask)
         target.task('dockerPush', type: PushImageTask)
+        target.extensions.create("docker", DockerConfig)
+        target.extensions.create("dockerfile", Dockerfile)
     }
 }

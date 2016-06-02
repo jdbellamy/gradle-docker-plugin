@@ -14,19 +14,7 @@ repositories {
 def dockerClientVersion = '5.0.1'
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.12'
     compile 'com.google.guava:guava:17.1'
-    compile 'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.6.0'
-    compile 'com.fasterxml.jackson.datatype:jackson-datatype-guava:2.6.0'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.0'
-    compile 'org.glassfish.jersey.core:jersey-client:2.19'
-    compile 'org.glassfish.jersey.connectors:jersey-apache-connector:2.19'
-    compile 'org.glassfish.jersey.media:jersey-media-json-jackson:2.19'
-    compile 'org.apache.commons:commons-compress:1.9'
-    compile 'org.apache.httpcomponents:httpclient:4.5'
-    compile 'com.github.jnr:jnr-unixsocket:0.8'
-    compile 'commons-lang:commons-lang:2.6'
-    compile 'org.bouncycastle:bcpkix-jdk15on:1.52'
     compile "com.spotify:docker-client:$dockerClientVersion"
     testCompile 'junit:junit:4.12'
 }

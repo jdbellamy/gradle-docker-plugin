@@ -6,11 +6,9 @@ import org.gradle.api.tasks.TaskAction
 class PushImageTask extends DefaultTask {
     final DockerClient docker = DefaultDockerClient.fromEnv().build()
 
-    String imgName = this.project.name
-
-
     @TaskAction
     String dockerPush() {
+        String imgName = project.docker.imgName ?: this.project.name
         docker.push(imgName)
     }
 }

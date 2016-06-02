@@ -7,14 +7,15 @@ class TagImageTask extends DefaultTask {
 
     final DockerClient docker = DefaultDockerClient.fromEnv().build()
 
-    String imgName = this.project.name
-    String[] tags = []
-    String repo = ''
+    String imgName
+
+    String[] tags
 
     @TaskAction
     String dockerTag() {
+        String name = (imgName ?: (project.docker.imgName ?: project.name))
         tags.each {
-            docker.tag(imgName, "$repo/$it")
+            docker.tag(name, it)
         }
     }
 }

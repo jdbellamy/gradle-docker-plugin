@@ -1,24 +1,43 @@
 import com.spotify.docker.client.DefaultDockerClient
 import com.spotify.docker.client.DockerClient
+import com.spotify.docker.client.ProgressHandler
+import com.spotify.docker.client.exceptions.DockerException
+import com.spotify.docker.client.messages.ProgressMessage
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 import java.nio.file.Paths
 
+import static java.lang.String.*
+
 class BuildImageTask extends DefaultTask {
     final DockerClient docker = DefaultDockerClient.fromEnv().build()
 
-    String dockerfilePath = "${this.project.projectDir}/."
-    String imgName = this.project.name
-    String dockerfile = null
+    String dockerfilePath = null
+
+    ProgressHandler progressHandler = new ProgressHandler() {
+        @Override
+        public void progress(ProgressMessage message) throws DockerException {
+            if (message.stream()) {
+                print message.stream()
+            }
+        }
+    }
 
     @TaskAction
     String dockerBuild() {
-        if (dockerfile) {
-            new File("${project.buildDir.canonicalPath}/Dockerfile").text = dockerfile
-            docker.build(Paths.get("${project.buildDir.path}/."), imgName)
+        String version = project.docker.imgVersion ?: (project.version ?: null)
+        String repo = project.docker.repo ?: ''
+        String imgName = project.docker.imgName ?: this.project.name
+        def fullImgName= repo ? join('/',repo,imgName) : imgName
+        if (dockerfilePath) {
+            docker.build(Paths.get(dockerfilePath), fullImgName, progressHandler)
         } else {
-            docker.build(Paths.get(dockerfilePath), imgName)
+            new File("${project.buildDir.canonicalPath}/Dockerfile").text = project.dockerfile.toString()
+            docker.build(Paths.get("${project.buildDir.path}/."), fullImgName, progressHandler)
+        }
+        if (version) {
+            docker.tag(fullImgName, "$fullImgName:$version")
         }
     }
 }
