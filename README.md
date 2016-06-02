@@ -22,7 +22,7 @@ docker {
 ## Tasks
 
 #### dockerBuild
-Build an image from an existing `Dockerfile` or a provided `dockerfile` configuration
+Build an image from an existing Dockerfile or a provided `dockerfile` configuration
 It currently supports a field, `dockerfilePath`, for providing the location of an existing dockerfile.
 
 ```groovy
@@ -31,7 +31,7 @@ dockerBuild {
 }
 ```
 
-In liu of providing an existing `Dockerfile`, a `dockerfile` configuration can be provided.
+In liu of providing an existing Dockerfile, a `dockerfile` configuration can be provided.
 
 ```groovy
 dockerfile {
